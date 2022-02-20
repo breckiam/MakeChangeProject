@@ -10,7 +10,7 @@ enough, calculations will not run and display missing amount to user.
 
 ### Technologies Used
 
-####Java
+Java
 
 ### Lessons Learned
 I learned different ways to combat precision error. I had worked through
