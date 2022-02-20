@@ -2,10 +2,15 @@
 
 
 ### Description
-This is a program to calculate change for a purchase. User is prompted to enter
-the total cost of the item, then prompted to enter total amount paid. This then
-returns bills and coins back in the largest denomination. If customer didn't pay
-enough, calculations will not run and display missing amount to user.
+This is a program to calculate change for a purchase. User is displayed with a
+menu where they can choose, Jims Burgers, Tonys tacos, or doing manual cash
+register. When either food options are selected, it will display their menu where
+the user can then select what they want to eat. The cost of the item is then
+assigned to total cost. User is then asked for how much they are paying with.
+The manual cash register asks for the total cost and how much was paid. Both of
+these return change in the largest denomination of bills and coins back. If user
+pays with less than total, they are promoted with how much they are short and
+can pay extra or quit. 
 
 
 ### Technologies Used

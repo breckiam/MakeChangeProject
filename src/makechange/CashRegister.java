@@ -8,26 +8,92 @@ public class CashRegister {
 
 		Scanner kb = new Scanner(System.in);
 
-		// Prompt user for cost
-		System.out.print("Please enter the total cost: ");
-		double total = kb.nextDouble();
+		boolean keepGoing = true;
+		
+		while (keepGoing) {
+			// initialize double inside of loop to 0 each time loop repeats
+			double total = 0, paid = 0, changeDue = 0;
 
-		// Prompt user for amount paid
-		System.out.print("Please enter amount paid: ");
-		double paid = kb.nextDouble();
+			System.out.println("----------------Main Menu-----------------");
+			System.out.println("Please choose from the folllowing options:");
+			System.out.println("1: Jims burger shop");
+			System.out.println("2: Tonys Tacos");
+			System.out.println("3: Manual Cash Register");
+			System.out.println("4: Quit");
 
-		// Amount owed back
-		double changeDue = paid - total;
+			String choice = kb.next();
 
-		// Displays message if total payed is less than total cost, and runs
-		// cahsRegister () otherwise
-		if (changeDue < 0) {
-			System.out.println("Silly goose, you need more moolah :)$$$");
-			// Change due is switched to a positive value for Sysout
-			System.out.println("You are short: $" + Math.abs(changeDue));
-		} else {
-			System.out.println("Change due: $" + Math.round(changeDue * 100.0) / 100.0);
-			cashRegister(changeDue);
+			switch (choice) {
+			case "1":
+			case "jims":
+			case "burger":
+				total = jimsBurger(kb);
+				if (total == 0) {
+					System.out.println("Invalid choice, please try again");
+				}
+				break;
+			case "2":
+			case "tonys":
+			case "tacos":
+				total = tonysTacos(kb);
+				if (total == 0) {
+					System.out.println("Invalid choice, please try again");
+				}
+				break;
+			case "3":
+			case "manual":
+				total = manualCash(kb);
+				break;
+			case "4":
+			case "quit":
+				System.out.println("Goodbye :)");
+				keepGoing = false;
+				break;
+			default:
+				System.out.println("Please enter a vaid choice");
+				total = 0;
+			}
+
+			// keeps CashRegister from running from and prompting user to enter any more
+			// info in
+			// and restarts them back at the main menu.
+			if (total != 0) {
+
+				// promt for amount paid
+				System.out.print("Enter total amount paid: ");
+				paid = kb.nextDouble();
+
+				// Amount owed back
+				changeDue = paid - total;
+
+				// Displays message if total payed is less than total cost, and runs
+				// cahsRegister () otherwise
+				if (changeDue < 0) {
+					double paidTemp = 12;
+					while (changeDue < 0 && paidTemp != 0) {
+						System.out.println("Silly goose, you need more moolah :)$$$");
+						// Change due is switched to a positive value for Sysout
+						System.out.println("You are short: $" + Math.abs(changeDue));
+						System.out.println("Enter extra payment or 0 to quit");
+						paidTemp = kb.nextDouble();
+
+						// Quit program on entry of 0
+						if (paidTemp == 0) {
+							System.out.println("Goodbye :)");
+							keepGoing = false;
+							break;
+						}
+						changeDue = (paid + paidTemp) - total;
+					}
+					// Runs method for calc after change due is no longer negative
+					System.out.println("Change due: $" + Math.round(changeDue * 100.0) / 100.0);
+					cashRegister(changeDue);
+				} else {
+					System.out.println("Change due: $" + Math.round(changeDue * 100.0) / 100.0);
+					cashRegister(changeDue);
+				}
+			}
+
 		}
 
 		kb.close();
@@ -115,6 +181,72 @@ public class CashRegister {
 		System.out.println("Dimes: " + dime);
 		System.out.println("Nickels: " + nickel);
 		System.out.println("Pennies: " + penny);
+		System.out.println();
+	}
+
+	public static double jimsBurger(Scanner kb) {
+
+		System.out.println("-----------Menu------------");
+		System.out.println("What would you like to eat?");
+		System.out.println("Enter 1-4 to make a choice: ");
+		System.out.println();
+		System.out.println("1: Single burger meal $10.54");
+		System.out.println("2: Double burger meal $13.45");
+		System.out.println("3: Basket of fries    $3.29");
+		System.out.println("4: Drink              $2.12");
+
+		int choice = kb.nextInt();
+
+		switch (choice) {
+		case 1:
+			return 10.54;
+		case 2:
+			return 13.45;
+		case 3:
+			return 3.29;
+		case 4:
+			return 2.12;
+		default:
+			return 0;
+
+		}
+	}
+
+	public static double tonysTacos(Scanner kb) {
+
+		System.out.println("-----------Menu------------");
+		System.out.println("What would you like to eat?");
+		System.out.println("Enter 1-4 to make a choice: ");
+		System.out.println();
+		System.out.println("1: el pastor     $7.65");
+		System.out.println("2: Carne asada   $6.77");
+		System.out.println("3: Quesadilla    $10.29");
+		System.out.println("4: Drink         $2.12");
+
+		int choice = kb.nextInt();
+
+		switch (choice) {
+		case 1:
+			return 7.65;
+		case 2:
+			return 6.77;
+		case 3:
+			return 10.29;
+		case 4:
+			return 2.12;
+		default:
+			return 0;
+
+		}
+	}
+
+	public static double manualCash(Scanner kb) {
+
+		// Prompt user for cost
+		System.out.print("Please enter the total cost: ");
+		double total = kb.nextDouble();
+
+		return total;
 	}
 
 }
