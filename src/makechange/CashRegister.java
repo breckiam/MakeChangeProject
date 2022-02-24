@@ -7,8 +7,9 @@ public class CashRegister {
 	public static void main(String[] args) {
 
 		Scanner kb = new Scanner(System.in);
-
+		
 		boolean keepGoing = true;
+
 		
 		while (keepGoing) {
 			// initialize double inside of loop to 0 each time loop repeats
@@ -128,23 +129,39 @@ public class CashRegister {
 		// Calc # twenties, then update ChangeDue
 		double twenty = changeDue % 20;
 		twenty = howManyBills(20, twenty, changeDue);
+		// If twenties is 0 no sysout or chaneDue update 
+		if (twenty != 0 ) {
 		changeDue -= twenty * 20;
+		System.out.println("Twenties: " + (int) twenty);
+		}
 
 		// Calc # tens, then update ChangeDue
 		double ten = changeDue % 10;
 		ten = howManyBills(10, ten, changeDue);
+		// If ten is 0 no sysout or chaneDue update 
+		if (ten != 0 ) {
 		changeDue -= ten * 10;
-
+		System.out.println("Tens: " + (int) ten);
+		}
+		
 		// Calc # tens, then update ChangeDue
 		double five = changeDue % 5;
 		five = howManyBills(5, five, changeDue);
+		// If five is 0 no sysout or chaneDue update 
+		if (five != 0 ) {
 		changeDue -= five * 5;
-
+		System.out.println("Fives: " + (int) five);
+		}
+		
 		// Calc # tens, then update ChangeDue
 		double one = changeDue % 1;
 		one = howManyBills(1, one, changeDue);
+		// If one is 0 no sysout or chaneDue update 
+		if (one != 0 ) {
 		changeDue -= one * 1;
-
+		System.out.println("Ones: " + (int) one);
+		}
+		
 		/*
 		 * Takes in left over of changeDue, and moves decimal over two places. (ex: 0.67
 		 * to 67.0) Then casts to an int and assigns to new int var centsDue.
@@ -156,31 +173,38 @@ public class CashRegister {
 		// Calc # dimes, then update ChangeDue
 		int quarter = centsDue % 25;
 		quarter = howManyCents(25, quarter, centsDue);
+		// If quarter is 0 no sysout or chaneDue update
+		if (quarter != 0) {
 		centsDue -= quarter * 25;
-
+		System.out.println("Quarters: " + quarter);
+		}
+		
 		// Calc # dimes, then update ChangeDue
 		int dime = centsDue % 10;
 		dime = howManyCents(10, dime, centsDue);
+		// If dime is 0 no sysout or chaneDue update
+		if (dime != 0 ) {
 		centsDue -= dime * 10;
-
+		System.out.println("Dimes: " + dime);
+		}
+		
 		// Calc # nickels, then update ChangeDue
 		int nickel = centsDue % 5;
 		nickel = howManyCents(5, nickel, centsDue);
+		// If nickel is 0 no sysout or chaneDue update
+		if (nickel != 0 ) {
 		centsDue -= nickel * 5;
-
+		System.out.println("Nickels: " + nickel);
+		}
+		
 		// Calc # pennies
 		int penny = centsDue % 1;
 		penny = howManyCents(1, penny, centsDue);
-
-		// Sysout results, bills are cast to int for visual purpose.
-		System.out.println("Twenties: " + (int) twenty);
-		System.out.println("Tens: " + (int) ten);
-		System.out.println("Fives: " + (int) five);
-		System.out.println("Ones: " + (int) one);
-		System.out.println("Quarters: " + quarter);
-		System.out.println("Dimes: " + dime);
-		System.out.println("Nickels: " + nickel);
+		// If penny is 0 no sysout
+		if (penny != 0 ) {
 		System.out.println("Pennies: " + penny);
+		}
+		
 		System.out.println();
 	}
 
@@ -248,5 +272,7 @@ public class CashRegister {
 
 		return total;
 	}
+	
+
 
 }
